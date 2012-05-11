@@ -1,0 +1,129 @@
+<html>
+<head>
+<script type="text/javascript" src="jsAnim.js"> </script>
+
+<script>
+i=1;
+j=1;
+flag=0;
+var old_id;
+var new_id;
+
+function insertionSort()
+{	
+	var manager=new jsAnimManager();
+	var obj = document.getElementById(i);
+	new_id=obj.id;
+	for(k=(i-1);k>0;k--)
+	{
+		var obj1 = document.getElementById(k);
+		if(obj1.innerText>obj.innerText)
+		{
+			animate1(k);
+			new_id=k;
+			change_id(k,k+1);	
+		}
+	}
+	is();
+	i++;
+}
+
+function is()
+{
+	var manager=new jsAnimManager();
+	var anim = manager.createAnimObject(i);
+	var posi = ((new_id-1)*75)-100;
+	anim.add({property: Prop.position, to: new Pos(posi,300), duration: 800});
+	var anim = manager.createAnimObject(i);  
+	anim.add({property: Prop.backgroundColor, to: new Col(191,239,255), duration: 200})
+	change_id(i,new_id);
+}
+
+function setposi(index){
+
+	var manager=new jsAnimManager();
+	obj = document.getElementById(index);
+	manager.registerPosition(index);  
+  	var posi = ((index-1)*75)-100
+	obj.setPosition(posi,600);  
+  
+	var anim = manager.createAnimObject(index);  
+  
+	anim.add({property: Prop.position, to: new Pos(posi,500), duration: 200});  
+
+	var anim = manager.createAnimObject(index);  
+  
+	anim.add({property: Prop.backgroundColor, to: new Col(240,255,255), duration: 200});
+}
+
+function animate1(old_id){
+
+	var manager=new jsAnimManager();
+			
+	var anim = manager.createAnimObject(old_id);  
+			
+	anim.add({property: Prop.position, to: new Pos(((old_id)*75-100),300),duration: 10});
+}
+
+function change_id(old_id,new_id)
+{
+	var swap;
+	swap=document.getElementById(old_id);
+	swap.id=new_id;
+}
+
+Arr= new Array;
+index=0;
+
+function add(form,tblId){
+	Arr[index] = form.inputbox.value.toLowerCase();
+	var tblBodyObj = document.getElementById(tblId).tBodies[0];
+	
+	for(var i=0;i<tblBodyObj.rows.length;i++)
+	{
+		var newCell = tblBodyObj.rows[0].insertCell();
+		newCell.innerHTML =Arr[index];
+		newCell.height=100;
+		newCell.width=75;
+		newCell.style.fontSize = "25" ;
+		newCell.style.textAlign = "center";
+		newCell.style.verticalAlign = "center";
+		newCell.id=(index+1);
+		
+		index=index+1;
+		setposi(index);
+		
+		document.sortForm.inputbox.value=""
+		document.sortForm.inputbox.focus();
+	}
+}
+
+function pausecomp(millis) 
+{
+var date = new Date();
+var curDate = null;
+
+do { curDate = new Date(); } 
+while(curDate-date < millis);
+} 
+
+</script>
+</head>
+
+<body>
+	<form name="sortForm">
+	<input type="text" name="inputbox">
+	<input type="button" onClick="add(this.form,'data')" value="Enter Element" name="addbtn">
+	<br>
+	<br>
+	</form>
+	<table border="1" cellpadding="0" cellspacing="0" id="data">
+	<tr>
+	</tr>
+	</table>
+	<button onclick="insertionSort()"> Sort </button>
+	<h1 style="color:green;text-align:left">
+	</h1>
+</body>
+</html>
+

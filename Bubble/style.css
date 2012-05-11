@@ -1,0 +1,35 @@
+#fish{
+	top: 75%;
+	left: 20%;
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}
+
+#form{
+	top: 5%;
+	left: 100%;
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}
+
+#table1{
+	top: 0%;
+	left: 10%;
+	height: 100%;
+	width :68%;
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}
+
+#table2{
+	top: 30%;
+	left: 20%;
+	height: 10%;
+	width :60%;
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}

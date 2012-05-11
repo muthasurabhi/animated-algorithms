@@ -1,0 +1,64 @@
+#top{
+	top: 20%;
+	left: 10%;
+	height: 100%;
+	width :52%;
+	font-size:200%;
+	font-family:'Snap ITC';
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}
+
+#left{
+	top: 10%;
+	left: 15%;
+	font-family:'Snap ITC';
+	font-size:180%;
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}
+
+#main {
+	font-family:'Snap ITC';
+	width: 800px;
+    margin: 0 auto;
+	margin-left: 250px;
+	margin-top: 75px; /* Taken the Login box to center by Modifying this -Sur */
+	padding: 20px; 
+    background-image: url('Images/glass5.png'); 
+	background-color:Transparent;
+}
+
+#success {
+	font-family:'Snap ITC';
+	width: 800px;
+	height:320px;
+    margin: 0 auto;
+	margin-left: 250px;
+	margin-top: 150px; /* Taken the Login box to center by Modifying this -Sur */
+	padding: 20px; 
+    background-image: url('Images/glass5.png'); 
+	background-color:Transparent;
+}
+#reg1{
+	top: 30%;
+	left: 25%;
+	height: 100%;
+	width :52%;
+	font-family:'Snap ITC';
+	font-size:180%;
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}
+
+#mid_but{
+	top: 90%;
+	left: 45%;
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}
+

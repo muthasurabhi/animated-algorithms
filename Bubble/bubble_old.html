@@ -1,0 +1,193 @@
+<html>
+<head>
+	<script type="text/javascript" src="jsAnim.js"> </script>
+	<script>
+	Arr=new Array
+	pass=1;
+	index=0;
+	j=0;
+	
+		function bubbleSort(){
+			
+				document.sortForm.passbtn.value="pass "+pass;
+				if(pass>=index)
+				{
+					document.sortForm.passbtn.value="Sorted"
+					return;
+				}
+					if(Number(Arr[j]) && Number(Arr[j+1]))
+					{				
+						Arr[j]=parseInt(Arr[j])
+						Arr[j+1]=parseInt(Arr[j+1])
+					}	
+					
+					if(Arr[j]>Arr[j+1])
+					{
+					
+							animate(j+1,j+2);
+						//	animate (j, j+1);
+							change_id(j+1,j+2);
+						//	change_id (j, j+1);
+							temp=Arr[j]
+							Arr[j]=Arr[j+1]
+							Arr[j+1]=temp							
+					}
+					else
+					{
+					
+						var manager=new jsAnimManager();
+						obj = document.getElementById(j+1);  
+		
+						var anim = manager.createAnimObject(j+1);  
+			
+						anim.add({property: Prop.backgroundColor, to: new Col(128,128,128),  duration:200}); 
+		
+						anim.add({property: Prop.backgroundColor, to: new Col(255,255,255),  duration:200}); 
+			
+						obj = document.getElementById(j+2);  
+					
+						anim = manager.createAnimObject(j+2);  
+			
+						anim.add({property: Prop.backgroundColor, to: new Col(128,128,128),  duration:200}); 
+	
+						anim.add({property: Prop.backgroundColor, to: new Col(255,255,255),  duration:200}); 
+			
+					}
+				
+				j=j+1;
+			
+			if(j==index-pass+1)
+			{
+				j=0;
+				pass++;
+			}
+		}
+
+		function setposi(index)
+		{
+			var manager=new jsAnimManager();
+		
+			obj = document.getElementById(index);  
+  	
+			manager.registerPosition(index);  
+			
+			var posi=100-((index-1)*50)
+			obj.setPosition(-posi,300);  
+  
+			var anim = manager.createAnimObject(index);  
+  
+			anim.add({property: Prop.position, to: new Pos(-posi,300),duration: 2}); 
+
+		}	
+		
+		function animate(old_id,new_id)
+		{
+			var manager=new jsAnimManager();
+			var new_posi;
+			var old_posi;
+			
+			old_posi=100-((old_id-1)*50);
+			if(old_id<new_id)
+			new_posi=old_posi-(Math.abs(new_id-old_id))*50;
+			else
+			new_posi=old_posi+(Math.abs(new_id-old_id))*50;
+			
+			obj = document.getElementById(old_id);  
+		
+			manager.registerPosition(old_id);  
+			
+			obj.setPosition(-(100-(old_id-1)*50),300);  
+		
+			var anim = manager.createAnimObject(old_id);  
+			
+			anim.add({property: Prop.backgroundColor, to: new Col(128,128,128),  duration:200}); 
+			anim.add({property: Prop.position, to: new Pos(-(100-(old_id-1)*50),450),duration: 2000});
+			anim.add({property: Prop.position, to: new Pos(-new_posi,450),duration: 2000});
+			anim.add({property: Prop.position, to: new Pos(-new_posi,300),duration: 2000});
+			anim.add({property: Prop.backgroundColor, to: new Col(255,255,255),  duration:200}); 
+			manager.kill(old_id);
+			
+			obj = document.getElementById(new_id);  
+				manager.registerPosition(new_id);  
+			
+			obj.setPosition(-(100-(new_id-1)*50),300);  
+			
+			anim = manager.createAnimObject(new_id);  
+			
+			anim.add({property: Prop.backgroundColor, to: new Col(128,128,128),  duration:200}); 
+		
+			anim.add({property: Prop.position, to: new Pos(-(100-(new_id-1)*50),150),duration: 2000});
+
+			anim.add({property: Prop.position, to: new Pos(-old_posi,150),duration: 2000});
+
+			anim.add({property: Prop.position, to: new Pos(-old_posi,300),duration: 2000});			
+	
+			anim.add({property: Prop.backgroundColor, to: new Col(255,255,255),  duration:200}); 
+		
+			manager.kill(new_id);
+			
+		}
+		
+		function change_id(old_id,new_id)
+		{
+			var div_node;
+			var temp_id="0";
+
+			div_node = document.getElementById(old_id);
+			div_node.id = temp_id;
+	
+			div_node = document.getElementById(new_id);
+			div_node.id = old_id;
+			//alert(div_node.id);
+
+			div_node = document.getElementById(temp_id);
+			div_node.id = new_id;
+			//alert(div_node.id);
+		}
+		function add(form,tblId) {
+	
+			Arr[index]=form.inputbox.value.toLowerCase();
+			var tblBodyObj = document.getElementById(tblId).tBodies[0];
+			
+			for (var i=0; i<tblBodyObj.rows.length; i++) {
+			var newCell = tblBodyObj.rows[i].insertCell(-1);
+			newCell.innerHTML = Arr[index];
+			newCell.height=100;
+			newCell.width=50;
+			newCell.background="pic.png";
+			newCell.style.fontSize = "70" + "px";
+			newCell.style.textAlign = "center";
+			newCell.style.verticalAlign = "center";
+			newCell.id=(index+1);
+	
+			index=index+1;
+			setposi(index);
+			document.sortForm.inputbox.value=""
+			document.sortForm.inputbox.focus();
+			
+		}
+ 
+}
+	</script>
+</head>
+
+<body>
+	<form name="sortForm">
+		<input type="text" Name="inputbox">
+		<input type="button" onClick="add(this.form,'data')" value="Add" name="addbtn">
+		<input type="button" onClick="bubbleSort()" value="Pass 0" name="passbtn">
+
+		<br>
+		<br>
+	</form>
+
+	<table border="1" cellpadding="0" cellspacing="0" id="data">
+	<tr>
+	
+
+	</tr>
+	</table>
+
+</body>
+</html>
+

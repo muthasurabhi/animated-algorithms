@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<script Language="JavaScript" SRC="algo.js"></script>
+		<script Language="JavaScript" SRC="layout.js"></script>
+		<script type="text/javascript" src="jsAnim.js"> </script>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body onload="setposi()">
+		<table id="table1" border="0">
+			<tr>
+				<td background="Images/tank1.png">
+					<div id="fish">
+						<img src="Images/fish.png">
+					</div>
+				<table border="0" id="table2">
+					  <tr>
+					    <td  id="1" align="center"  width="100px"  height="100px">
+					      <div>
+							<img src="Images/bubble5.png" height="100%">					<!-- 5 -->
+					      </div>
+					    </td>
+					  </tr>
+					  <tr>
+					    <td  id="2"align="center"  width="100px"  height="60" >
+					      <div>
+							<img src="Images/bubble3.png" height="100%" >					<!-- 3 -->
+					      </div>
+					    </td>
+					  </tr>
+					  <tr>
+					    <td id="3"align="center"  width="100px"  height="40px">
+					      <div>
+							<img src="Images/bubble2.png" height="100%" >					<!-- 2 -->
+					      </div>
+					    </td>
+					  </tr>
+					  <tr>
+					    <td  id="4"align="center"  width="100px"  height="80px">
+					      <div>
+							<img src="Images/bubble4.png" height="100%" >					<!-- 4 -->
+					      </div>
+					    </td>
+					  </tr>
+					  <tr>
+					    <td  id="5" align="center"  width="100px"  height="20px">
+					      <div>
+							<img src="Images/bubble1.png" height="100%" >					<!-- 1 -->
+					      </div>
+					    </td>
+					  </tr>
+					</table>
+					
+					<form name="sortForm" id="form">
+						<input type="button" onClick="BubbleSort()" value="pass 0" name="passbtn" style="font-family:'Snap ITC';font-size:160%;background-image: url('Images/button.png'); background-color:Transparent; width:123px; height:53px;">
+					</form>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

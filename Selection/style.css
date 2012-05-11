@@ -1,0 +1,27 @@
+#table1{
+	top: 0%;
+	left: 30%;
+	height: 100%;
+	width :52%;
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}
+
+#table2{
+	top: 5%;
+	left: 13%;
+	height: 10%;
+	width :60%;
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}
+
+#form{
+	top: 5%;
+	left: 100%;
+	position: absolute;
+	z-index: 1;
+	visibility: show;
+}

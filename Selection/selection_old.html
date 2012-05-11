@@ -1,0 +1,164 @@
+<html>
+<head>
+<script type="text/javascript" src="jsAnim.js"> </script>
+
+<script>
+i=1;
+j=1;
+flag=0;
+var old_id;
+var new_id;
+
+function selectionSort()
+{	
+	var ind;
+	var manager=new jsAnimManager();
+	for(k=1;k<=index;k++)			//removing highlight
+	{
+		var anim2 = manager.createAnimObject(k);  
+  		anim2.add({property: Prop.backgroundColor, to: new Col(240,255,255), duration: 2000});
+	}
+	obj = document.getElementById(i);
+	var temp=obj.innerText;
+	ind=i;
+	for(k=i+1;k<=index;k++)
+	{
+		obj1 = document.getElementById(k);
+		if(obj1.innerText<temp)
+		{
+			temp=obj1.innerText;	
+			ind=obj1.id;
+		}	
+	}
+	if(i!=index)
+	{
+		var anim = manager.createAnimObject(i);  
+  		anim.add({property: Prop.backgroundColor, to: new Col(191,239,255), duration: 2000});
+		var anim1 = manager.createAnimObject(ind);  
+		anim1.add({property: Prop.backgroundColor, to: new Col(191,239,255), duration: 2000});
+	}
+	if(flag==0&&ind!=i)
+	{
+		animate(i,ind);
+		change_id(i,ind);
+	}
+	if(i==index)
+	{
+		flag=1;
+		document.getElementById('passCount').innerHTML = "Sorted";
+	}
+	i++;
+	if(flag==0)
+	{
+		document.getElementById('passCount').innerHTML = "pass "+(i-1);
+	}
+}
+
+function setposi(index){
+
+	var manager=new jsAnimManager();
+	obj = document.getElementById(index);
+	manager.registerPosition(index);  
+  	var posi = ((index-1)*75)-100
+	obj.setPosition(posi,600);  
+  
+	var anim = manager.createAnimObject(index);  
+  
+	anim.add({property: Prop.position, to: new Pos(posi,300), duration: 2000});  
+
+	var anim = manager.createAnimObject(index);  
+  
+	anim.add({property: Prop.backgroundColor, to: new Col(240,255,255), duration: 2000});
+}
+
+function animate(old_id,new_id){
+
+	var manager=new jsAnimManager();
+	
+	obj = document.getElementById(old_id);  
+			
+	manager.registerPosition(old_id);  
+			
+	obj.setPosition(((old_id-1)*75-100),300);  
+			
+	var anim = manager.createAnimObject(old_id);  
+			
+	anim.add({property: Prop.position, to: new Pos(((old_id-1)*75-100),450),duration: 2000});
+	
+	anim.add({property: Prop.position, to: new Pos(((new_id-1)*75-100),450),duration: 2000});
+
+	anim.add({property: Prop.position, to: new Pos(((new_id-1)*75-100),300),duration: 2000});
+
+	obj1 = document.getElementById(new_id);  
+			
+	manager.registerPosition(new_id);  
+			
+	obj1.setPosition(((new_id-1)*75-100),300);  
+			
+	var anim1 = manager.createAnimObject(new_id);  
+			
+	anim1.add({property: Prop.position, to: new Pos(((new_id-1)*75-100),150),duration: 2000});
+	
+	anim1.add({property: Prop.position, to: new Pos(((old_id-1)*75-100),150),duration: 2000});
+
+	anim1.add({property: Prop.position, to: new Pos(((old_id-1)*75-100),300),duration: 2000});
+}
+
+function change_id(old_id,new_id)
+{
+	var swap,swap1;
+	var temp="0";
+	swap=document.getElementById(old_id);
+	temp=swap.id;
+	swap1=document.getElementById(new_id);
+	swap.id=swap1.id;
+	swap1.id=temp;
+}
+
+Arr= new Array;
+index=0;
+
+function add(form,tblId){
+	Arr[index] = form.inputbox.value.toLowerCase();
+	var tblBodyObj = document.getElementById(tblId).tBodies[0];
+	
+	for(var i=0;i<tblBodyObj.rows.length;i++)
+	{
+		var newCell = tblBodyObj.rows[0].insertCell();
+		newCell.innerHTML =Arr[index];
+		newCell.height=100;
+		newCell.width=75;
+		newCell.style.fontSize = "25" ;
+		newCell.style.textAlign = "center";
+		newCell.style.verticalAlign = "center";
+		newCell.id=(index+1);
+		
+		index=index+1;
+		setposi(index);
+		
+		document.sortForm.inputbox.value=""
+		document.sortForm.inputbox.focus();
+	}
+}
+
+</script>
+</head>
+
+<body>
+	<form name="sortForm">
+	<input type="text" name="inputbox">
+	<input type="button" onClick="add(this.form,'data')" value="Enter Element" name="addbtn">
+	<br>
+	<br>
+	</form>
+	<table border="1" cellpadding="0" cellspacing="0" id="data">
+	<tr>
+	</tr>
+	</table>
+	<button onclick="selectionSort()"> Sort </button>
+	<h1 style="color:green;text-align:left">
+	<label for = "passCount" id="passCount">pass 0</label>
+	</h1>
+</body>
+</html>
+

@@ -1,0 +1,39 @@
+#include <iostream>
+
+void PrintArray(int iaArray[], int iLength) {
+    using namespace std;
+    for (int iIndex = 0; iIndex < iLength; ++iIndex) {
+        cout << iaArray[iIndex] << "  ";
+    }
+    cout << endl;
+}
+
+int main() {
+    using namespace std;
+
+    int iaArray[] = {34, 17, 23, 35, 45, 9, 1};
+    int iLength = 7;
+
+    cout << "Unsorted: ";
+    PrintArray(iaArray, iLength);
+
+    // Selection sort
+    for (int i = 0; i < iLength - 1; ++i) {
+        int iSmallest = i;
+        for (int j = i + 1; j < iLength; ++j) {
+            if (iaArray[iSmallest] > iaArray[j]) {
+                iSmallest = j;
+            }
+        }
+        // Put the smallest remaining element in the ith position
+        int iSwap           = iaArray[iSmallest];
+        iaArray[iSmallest]  = iaArray[i];
+        iaArray[i]          = iSwap;
+    }
+
+    cout << "Sorted:   ";
+    PrintArray(iaArray, iLength);
+
+    cin.get();
+    return 0;
+}
